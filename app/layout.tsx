@@ -1,10 +1,8 @@
-import { Inter } from 'next/font/google'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 import type { Metadata } from 'next'
 
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: '企業名 | 企業向けホームページテンプレート',
@@ -24,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
