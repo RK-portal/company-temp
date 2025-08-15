@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { mainNavigation, utilityNavigation } from '@/config/navigation'
 import { siteConfig } from '@/config/site'
@@ -20,16 +20,32 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [pathname])
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current)
+      }
+    }
+  }, [])
+
   // Handle sticky header visibility
   const headerVisible = !sticky || scrollDirection !== 'down'
 
   const handleMenuEnter = (itemId: string) => {
+    // Clear any pending close timeout
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+
     if (mainNavigation.find((item) => item.id === itemId)?.children) {
       setActiveMenuId(itemId)
       setMegaMenuOpen(true)
@@ -37,8 +53,27 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
   }
 
   const handleMenuLeave = () => {
-    setActiveMenuId(null)
-    setMegaMenuOpen(false)
+    // Add delay before closing
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMenuId(null)
+      setMegaMenuOpen(false)
+    }, 200)
+  }
+
+  const handleMegaMenuEnter = () => {
+    // Clear timeout when entering mega menu
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+  }
+
+  const handleMegaMenuLeave = () => {
+    // Use same delay when leaving mega menu
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMenuId(null)
+      setMegaMenuOpen(false)
+    }, 200)
   }
 
   const activeMenuItem = activeMenuId
@@ -133,14 +168,19 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
 
         {/* Mega Menu */}
         {megaMenuOpen && activeMenuItem && activeMenuItem.children && (
-          <MegaMenu
-            items={activeMenuItem.children}
-            isOpen={megaMenuOpen}
-            onClose={() => {
-              setMegaMenuOpen(false)
-              setActiveMenuId(null)
-            }}
-          />
+          <div
+            onMouseEnter={handleMegaMenuEnter}
+            onMouseLeave={handleMegaMenuLeave}
+          >
+            <MegaMenu
+              items={activeMenuItem.children}
+              isOpen={megaMenuOpen}
+              onClose={() => {
+                setMegaMenuOpen(false)
+                setActiveMenuId(null)
+              }}
+            />
+          </div>
         )}
       </header>
 

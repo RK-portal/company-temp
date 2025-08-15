@@ -27,3 +27,37 @@ export const contactFormSchema = z.object({
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>
+
+export const documentRequestSchema = z.object({
+  name: z.string().min(1, 'お名前を入力してください'),
+  email: z
+    .string()
+    .min(1, 'メールアドレスを入力してください')
+    .email('正しいメールアドレスを入力してください'),
+  phone: z.string().optional(),
+  company: z.string().optional(),
+  deliveryMethod: z.enum(['download', 'mail'], {
+    required_error: 'お届け方法を選択してください',
+  }),
+  postalCode: z.string().optional(),
+  address: z.string().optional(),
+  message: z.string().optional(),
+  privacy: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: 'プライバシーポリシーに同意してください',
+    }),
+}).refine(
+  (data) => {
+    if (data.deliveryMethod === 'mail') {
+      return data.postalCode && data.address
+    }
+    return true
+  },
+  {
+    message: '郵送の場合は郵便番号と住所が必要です',
+    path: ['postalCode'],
+  }
+)
+
+export type DocumentRequestFormData = z.infer<typeof documentRequestSchema>
