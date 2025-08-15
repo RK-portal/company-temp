@@ -1,0 +1,71 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    name: Lighthouse Performance Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Export static site
+        run: npm run export
+      
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 30
+      
+      - name: Format results
+        if: always()
+        run: |
+          echo "## Lighthouse Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # パフォーマンススコアの表示
+          if [ -f .lighthouseci/lhr-*.json ]; then
+            for file in .lighthouseci/lhr-*.json; do
+              url=$(jq -r '.finalUrl' "$file")
+              performance=$(jq -r '.categories.performance.score * 100' "$file")
+              accessibility=$(jq -r '.categories.accessibility.score * 100' "$file")
+              bestPractices=$(jq -r '.categories["best-practices"].score * 100' "$file")
+              seo=$(jq -r '.categories.seo.score * 100' "$file")
+              
+              echo "### $url" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
+              echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+              echo "| Performance | $performance% |" >> $GITHUB_STEP_SUMMARY
+              echo "| Accessibility | $accessibility% |" >> $GITHUB_STEP_SUMMARY
+              echo "| Best Practices | $bestPractices% |" >> $GITHUB_STEP_SUMMARY
+              echo "| SEO | $seo% |" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            done
+          fi

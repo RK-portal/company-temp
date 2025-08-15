@@ -1,9 +1,11 @@
 # SOW2: デザイントークン & 基本テーマ
 
 ## 目的/範囲
+
 企業向けホームページテンプレートの視覚的一貫性を保証するデザイントークンシステムを構築し、Tailwind CSSと統合する。カラー、タイポグラフィ、スペーシング、シャドウ等の基本テーマを定義し、ブランド差し替えを容易にする設計を実現する。
 
 ## 成果物
+
 - デザイントークン定義ファイル（tokens/brand.json）
 - Tailwind CSS拡張設定（tailwind.config.ts）
 - CSS変数定義（styles/tokens.css）
@@ -13,11 +15,13 @@
 - トークン変換ユーティリティ（lib/tokens.ts）
 
 ## 依存関係
+
 - SOW1の完了（Next.js環境構築）
 - Tailwind CSS 3.x
 - TypeScript 5.x
 
 ## 変更対象（ファイル/配置）
+
 ```
 /
 ├── tokens/
@@ -42,18 +46,21 @@
 ## コンポーネント責務/Props契約
 
 ### ThemeProvider
+
 - **責務**: アプリケーション全体にテーマコンテキストを提供
-- **Props**: 
+- **Props**:
   - `children: React.ReactNode` - 子要素
   - `theme?: 'default' | 'custom'` - テーマ選択（将来拡張用）
 
 ## UI挙動
+
 - CSS変数によるリアルタイムテーマ反映
 - Tailwind CSSクラスでトークン値を参照可能
 - ダークモード対応の基盤（将来実装用）
 - システムカラースキーム検出準備
 
 ## A11y配慮
+
 - 色コントラスト比の確保（WCAG AA準拠）
   - 通常テキスト: 4.5:1以上
   - 大きいテキスト: 3:1以上
@@ -62,6 +69,7 @@
 - 色だけに依存しない情報伝達
 
 ## 受け入れ基準（DoD）
+
 1. brand.jsonでトークンが定義されている
 2. Tailwind CSSでカスタムトークンが使用可能
 3. CSS変数が:rootに定義されている
@@ -74,6 +82,7 @@
 10. レスポンシブなスペーシングスケールが定義済み
 
 ## 除外項目
+
 - ダークモードの実装
 - 複数テーマの切り替え機能
 - アニメーショントークンの定義
@@ -81,6 +90,7 @@
 - 動的なテーマ生成機能
 
 ## Claude Code実装メモ
+
 1. tokens/brand.jsonを要件定義書の仕様通り作成
 2. lib/tokens.tsでJSON→CSS変数/Tailwind設定変換関数実装
 3. types/tokens.tsでトークンの型定義（colors、typography、spacing、borderRadius）

@@ -1,0 +1,65 @@
+{
+  "name": "株式会社サンプル",
+  "established": "2010年4月1日",
+  "capital": "5,000万円",
+  "employees": "120名（2024年1月現在）",
+  "president": "山田 太郎",
+  "business": [
+    "住宅建築・リフォーム事業",
+    "不動産仲介事業",
+    "建築資材の販売",
+    "住宅メンテナンスサービス"
+  ],
+  "address": {
+    "postal": "100-0001",
+    "prefecture": "東京都",
+    "city": "千代田区",
+    "street": "千代田1-1-1",
+    "building": "サンプルビル10F"
+  },
+  "phone": "03-1234-5678",
+  "fax": "03-1234-5679",
+  "email": "info@example.com",
+  "coordinates": {
+    "lat": 35.6762,
+    "lng": 139.6503
+  },
+  "history": [
+    {
+      "id": "history-1",
+      "date": "2010年4月",
+      "title": "会社設立",
+      "description": "東京都千代田区にて株式会社サンプルを設立"
+    },
+    {
+      "id": "history-2",
+      "date": "2012年8月",
+      "title": "本社移転",
+      "description": "事業拡大に伴い、現在の本社ビルへ移転"
+    },
+    {
+      "id": "history-3",
+      "date": "2015年3月",
+      "title": "リフォーム事業開始",
+      "description": "住宅リフォーム・リノベーション事業を本格的に開始"
+    },
+    {
+      "id": "history-4",
+      "date": "2018年6月",
+      "title": "ISO9001認証取得",
+      "description": "品質マネジメントシステムの国際規格認証を取得"
+    },
+    {
+      "id": "history-5",
+      "date": "2020年10月",
+      "title": "創業10周年",
+      "description": "おかげさまで創業10周年を迎える"
+    },
+    {
+      "id": "history-6",
+      "date": "2022年4月",
+      "title": "メンテナンス事業強化",
+      "description": "住宅の長期メンテナンスサービスを拡充"
+    }
+  ]
+}

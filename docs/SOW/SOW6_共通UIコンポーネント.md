@@ -1,9 +1,11 @@
 # SOW6: 共通UIコンポーネント
 
 ## 目的/範囲
+
 企業向けホームページテンプレート全体で使用される汎用的なUIコンポーネントライブラリを構築する。統一されたデザインシステムに基づき、再利用性が高く、アクセシブルなコンポーネント群を実装する。
 
 ## 成果物
+
 - Buttonコンポーネント（components/ui/Button.tsx）
 - Cardコンポーネント（components/ui/Card.tsx）
 - Badgeコンポーネント（components/ui/Badge.tsx）
@@ -21,14 +23,16 @@
 - Storybook設定（.storybook/）
 
 ## 依存関係
+
 - SOW1～2の完了
 - React 18.x
 - Tailwind CSS 3.x
 - clsx（クラス名結合）
-- @radix-ui/react-*（アクセシブルなプリミティブ）
+- @radix-ui/react-\*（アクセシブルなプリミティブ）
 - Storybook 7.x（コンポーネントカタログ）
 
 ## 変更対象（ファイル/配置）
+
 ```
 /
 ├── components/
@@ -59,6 +63,7 @@
 ## コンポーネント責務/Props契約
 
 ### Button
+
 - **責務**: クリック可能なボタン表示
 - **Props**:
   - `variant?: 'primary' | 'secondary' | 'outline' | 'ghost'`
@@ -71,6 +76,7 @@
   - `className?: string`
 
 ### Card
+
 - **責務**: コンテンツをカード形式で表示
 - **Props**:
   - `title?: string`
@@ -82,6 +88,7 @@
   - `className?: string`
 
 ### Badge
+
 - **責務**: ステータスやラベル表示
 - **Props**:
   - `text: string`
@@ -90,6 +97,7 @@
   - `className?: string`
 
 ### Modal
+
 - **責務**: オーバーレイ付きダイアログ表示
 - **Props**:
   - `isOpen: boolean`
@@ -99,6 +107,7 @@
   - `children: React.ReactNode`
 
 ### Tabs
+
 - **責務**: タブ切り替えインターフェース
 - **Props**:
   - `items: TabItem[]`
@@ -107,6 +116,7 @@
   - `className?: string`
 
 ### Accordion
+
 - **責務**: 開閉可能なコンテンツパネル
 - **Props**:
   - `items: AccordionItem[]`
@@ -115,6 +125,7 @@
   - `className?: string`
 
 ### Table
+
 - **責務**: データの表形式表示
 - **Props**:
   - `columns: TableColumn[]`
@@ -124,6 +135,7 @@
   - `className?: string`
 
 ## UI挙動
+
 - ボタン: ホバー・フォーカス・アクティブ状態の視覚フィードバック
 - モーダル: ESCキーで閉じる、背景クリックで閉じる
 - タブ: キーボードの矢印キーでナビゲーション
@@ -132,6 +144,7 @@
 - ローディング: スピナーアニメーション表示
 
 ## A11y配慮
+
 - 全コンポーネントでキーボード操作サポート
 - 適切なARIA属性（role、aria-label、aria-expanded等）
 - フォーカス管理（フォーカストラップ、フォーカスリング）
@@ -140,6 +153,7 @@
 - モーション設定の尊重（prefers-reduced-motion）
 
 ## 受け入れ基準（DoD）
+
 1. 全コンポーネントがTypeScriptで型安全に実装
 2. デザイントークンを使用したスタイリング
 3. レスポンシブデザイン対応
@@ -152,6 +166,7 @@
 10. 全ブラウザで動作確認済み
 
 ## 除外項目
+
 - 複雑なデータグリッド機能
 - ドラッグ&ドロップ機能
 - リッチテキストエディター
@@ -159,13 +174,14 @@
 - カラーピッカー
 
 ## Claude Code実装メモ
+
 1. lib/cn.tsでclsxとtailwind-mergeを組み合わせたユーティリティ実装
 2. @radix-uiのプリミティブを基盤として使用（Modal、Tabs、Accordion等）
 3. Button.tsxは全バリアント×サイズの組み合わせをサポート
-4. Card.tsxはNext.js Linkと統合、外部リンクは自動でtarget="_blank"
+4. Card.tsxはNext.js Linkと統合、外部リンクは自動でtarget="\_blank"
 5. Modal.tsxでcreatePortal使用、フォーカストラップ実装
 6. Table.tsxはモバイルで横スクロール対応
 7. フォーム要素は全てforwardRef対応でreact-hook-formと統合可能
 8. Loading.tsxはサイズ別スピナー、スケルトンローディングオプション
-9. 各コンポーネントに対応するStoryファイル作成（*.stories.tsx）
+9. 各コンポーネントに対応するStoryファイル作成（\*.stories.tsx）
 10. コンポーネントのdata-testid属性でテスト可能性確保

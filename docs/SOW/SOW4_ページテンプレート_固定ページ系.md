@@ -1,9 +1,11 @@
 # SOW4: ページテンプレート（固定ページ系）
 
 ## 目的/範囲
+
 企業向けホームページテンプレートの固定ページ（事業紹介、品質・保証関連、会社情報、お問い合わせ）を実装する。各ページで再利用可能なセクションコンポーネントを作成し、統一されたデザインと高い保守性を実現する。
 
 ## 成果物
+
 - 事業紹介ページ（app/(site)/house/page.tsx）
 - 品質ページ（app/(site)/quality/page.tsx）
 - 保証ページ（app/(site)/warranty/page.tsx）
@@ -16,6 +18,7 @@
 - データファイル（data/company.json、data/faq.json）
 
 ## 依存関係
+
 - SOW1～3の完了
 - React Hook Form（フォーム処理）
 - zod（バリデーション）
@@ -23,6 +26,7 @@
 - react-intersection-observer（スクロールアニメーション）
 
 ## 変更対象（ファイル/配置）
+
 ```
 /
 ├── app/
@@ -64,6 +68,7 @@
 ## コンポーネント責務/Props契約
 
 ### PageHero
+
 - **責務**: 各ページのメインビジュアル表示
 - **Props**:
   - `title: string` - ページタイトル
@@ -72,36 +77,42 @@
   - `breadcrumb: BreadcrumbItem[]` - パンくずリスト
 
 ### FeatureGrid
+
 - **責務**: アイコン付き特徴グリッド表示
 - **Props**:
   - `items: FeatureItem[]` - 特徴アイテム配列
   - `columns?: 2 | 3 | 4` - カラム数（デフォルト: 3）
 
 ### CounterStats
+
 - **責務**: スクロール連動の数値カウンターアニメーション
 - **Props**:
   - `stats: StatItem[]` - 統計データ配列
   - `duration?: number` - アニメーション時間（ms）
 
 ### Timeline
+
 - **責務**: 縦型タイムライン表示（沿革用）
 - **Props**:
   - `items: TimelineItem[]` - タイムラインアイテム
   - `alternating?: boolean` - 左右交互配置
 
 ### FAQ
+
 - **責務**: アコーディオン式FAQ表示
 - **Props**:
   - `items: FAQItem[]` - FAQ項目
   - `allowMultiple?: boolean` - 複数開閉可能
 
 ### ContactForm
+
 - **責務**: お問い合わせフォーム、バリデーション、送信処理
 - **Props**:
   - `onSubmit: (data: ContactFormData) => Promise<void>` - 送信処理
   - `className?: string` - 追加スタイル
 
 ## UI挙動
+
 - ページ遷移時にスムーススクロールでトップへ
 - 実績数値は画面内に入ったらカウントアップ開始
 - FAQアコーディオンはスムーズな開閉アニメーション
@@ -110,6 +121,7 @@
 - タイムラインは順次フェードイン
 
 ## A11y配慮
+
 - 各ページに適切なh1見出し設定
 - フォームラベルとエラーメッセージの関連付け
 - アコーディオンにaria-expanded属性
@@ -118,6 +130,7 @@
 - エラー時の音声読み上げ対応
 
 ## 受け入れ基準（DoD）
+
 1. 全固定ページが正常に表示される
 2. 各ページのメタデータ（title、description、OGP）が適切
 3. パンくずリストが正しい階層で表示
@@ -130,6 +143,7 @@
 10. 構造化データ（Organization、LocalBusiness）出力
 
 ## 除外項目
+
 - 実際のメール送信機能（ダミー処理のみ）
 - 地図のカスタムマーカー
 - フォームの確認画面
@@ -137,6 +151,7 @@
 - reCAPTCHA実装
 
 ## Claude Code実装メモ
+
 1. lib/metadata.tsで各ページのgenerateMetadata関数実装
 2. data/company.jsonに会社概要、沿革データ作成
 3. data/faq.jsonに品質・保証・メンテナンス別のFAQデータ作成

@@ -1,9 +1,11 @@
 # SOW3: 共通レイアウト & ナビゲーション
 
 ## 目的/範囲
+
 企業向けホームページテンプレートの全ページで共通利用されるヘッダー、フッター、パンくずリスト、およびナビゲーションシステムを実装する。レスポンシブ対応のメガメニューとモバイルハンバーガーメニューを含む、統一されたユーザー体験を提供する。
 
 ## 成果物
+
 - ヘッダーコンポーネント（components/layout/Header.tsx）
 - フッターコンポーネント（components/layout/Footer.tsx）
 - パンくずリストコンポーネント（components/layout/Breadcrumb.tsx）
@@ -16,6 +18,7 @@
 - フック（hooks/useNavigation.ts、hooks/useScrollDirection.ts）
 
 ## 依存関係
+
 - SOW1の完了（Next.js環境構築）
 - SOW2の完了（デザイントークン）
 - React 18.x
@@ -23,6 +26,7 @@
 - @heroicons/react（アイコン用）
 
 ## 変更対象（ファイル/配置）
+
 ```
 /
 ├── components/
@@ -51,36 +55,42 @@
 ## コンポーネント責務/Props契約
 
 ### Header
+
 - **責務**: サイトヘッダー表示、ナビゲーション提供、スクロール時の表示制御
-- **Props**: 
+- **Props**:
   - `className?: string` - 追加スタイルクラス
   - `sticky?: boolean` - スティッキーヘッダー有効化（デフォルト: true）
 
 ### Footer
+
 - **責務**: サイトフッター表示、サイトマップ、企業情報、SNSリンク提供
-- **Props**: 
+- **Props**:
   - `className?: string` - 追加スタイルクラス
 
 ### Breadcrumb
+
 - **責務**: パンくずリスト表示、構造化データ出力
-- **Props**: 
+- **Props**:
   - `items: BreadcrumbItem[]` - パンくずアイテム配列
   - `className?: string` - 追加スタイルクラス
 
 ### MegaMenu
+
 - **責務**: デスクトップ向けドロップダウンメガメニュー表示
-- **Props**: 
+- **Props**:
   - `items: NavigationItem[]` - ナビゲーションアイテム
   - `isOpen: boolean` - 開閉状態
   - `onClose: () => void` - 閉じるコールバック
 
 ### MobileMenu
+
 - **責務**: モバイル向けスライドメニュー表示
-- **Props**: 
+- **Props**:
   - `isOpen: boolean` - 開閉状態
   - `onClose: () => void` - 閉じるコールバック
 
 ## UI挙動
+
 - ヘッダー: スクロールダウンで非表示、スクロールアップで表示
 - メガメニュー: ホバーで展開、フォーカスでキーボード操作可能
 - モバイルメニュー: ハンバーガーアイコンタップで右からスライドイン
@@ -88,6 +98,7 @@
 - フッター: 常に最下部に配置（sticky footer）
 
 ## A11y配慮
+
 - ナビゲーションにaria-label="メインナビゲーション"設定
 - メガメニューにaria-expanded属性
 - モバイルメニューのフォーカストラップ実装
@@ -97,6 +108,7 @@
 - リンクの明確なラベル付け
 
 ## 受け入れ基準（DoD）
+
 1. 全ページでヘッダー・フッターが表示される
 2. メガメニューがデスクトップで正常動作
 3. モバイルメニューがスマートフォンで正常動作
@@ -109,6 +121,7 @@
 10. お問い合わせボタンが目立つ位置に配置
 
 ## 除外項目
+
 - 検索機能
 - 言語切り替え機能
 - ログイン/会員メニュー
@@ -116,6 +129,7 @@
 - ダークモード切り替え
 
 ## Claude Code実装メモ
+
 1. config/navigation.tsでメニュー構造定義（階層構造、アイコン、説明文含む）
 2. config/site.tsで企業情報、SNSリンク等を要件定義書通り実装
 3. types/navigation.tsでNavigationItem、BreadcrumbItem型定義

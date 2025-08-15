@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
-import brandTokens from './tokens/brand.json';
+import type { Config } from 'tailwindcss'
+import brandTokens from './tokens/brand.json'
 
 const config: Config = {
   content: [
@@ -33,6 +33,6 @@ const config: Config = {
     screens: brandTokens.breakpoints,
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config

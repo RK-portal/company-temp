@@ -11,16 +11,16 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   body {
     @apply text-neutral-900 bg-white;
   }
-  
+
   /* Focus styles for accessibility */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-primary-500;
   }
-  
+
   /* Remove focus outline for mouse users */
   :focus:not(:focus-visible) {
     @apply outline-none;

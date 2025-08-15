@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@/components/integrations/GoogleAnalytics'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 import type { Metadata } from 'next'
@@ -20,12 +21,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
   return (
     <html lang="ja">
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {measurementId && <GoogleAnalytics measurementId={measurementId} />}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

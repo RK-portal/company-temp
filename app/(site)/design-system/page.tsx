@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { tokens } from '@/lib/tokens';
+import { tokens } from '@/lib/tokens'
 
 export default function DesignSystemPage() {
   return (
@@ -11,7 +11,7 @@ export default function DesignSystemPage() {
         {/* カラーパレット */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-neutral-900 mb-6">カラーパレット</h2>
-          
+
           {/* プライマリカラー */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-neutral-700 mb-3">Primary</h3>
@@ -118,7 +118,7 @@ export default function DesignSystemPage() {
         {/* タイポグラフィ */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-neutral-900 mb-6">タイポグラフィ</h2>
-          
+
           {/* フォントサイズ */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-neutral-700 mb-3">Font Sizes</h3>
@@ -156,16 +156,15 @@ export default function DesignSystemPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-neutral-900 mb-6">スペーシング</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Object.entries(tokens.spacing).slice(0, 24).map(([key, value]) => (
-              <div key={key} className="flex items-center gap-2">
-                <span className="text-sm text-neutral-600 w-12">{key}</span>
-                <div
-                  className="bg-primary-500"
-                  style={{ width: value, height: '24px' }}
-                />
-                <span className="text-xs text-neutral-500">({value})</span>
-              </div>
-            ))}
+            {Object.entries(tokens.spacing)
+              .slice(0, 24)
+              .map(([key, value]) => (
+                <div key={key} className="flex items-center gap-2">
+                  <span className="text-sm text-neutral-600 w-12">{key}</span>
+                  <div className="bg-primary-500" style={{ width: value, height: '24px' }} />
+                  <span className="text-xs text-neutral-500">({value})</span>
+                </div>
+              ))}
           </div>
         </section>
 
@@ -175,10 +174,7 @@ export default function DesignSystemPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(tokens.borderRadius).map(([key, value]) => (
               <div key={key} className="text-center">
-                <div
-                  className="w-24 h-24 bg-primary-500 mx-auto"
-                  style={{ borderRadius: value }}
-                />
+                <div className="w-24 h-24 bg-primary-500 mx-auto" style={{ borderRadius: value }} />
                 <p className="text-sm mt-2 text-neutral-700">{key}</p>
                 <p className="text-xs text-neutral-500">{value}</p>
               </div>
@@ -200,5 +196,5 @@ export default function DesignSystemPage() {
         </section>
       </div>
     </div>
-  );
+  )
 }

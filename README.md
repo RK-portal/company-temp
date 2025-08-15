@@ -144,6 +144,7 @@ vercel --prod
 #### 方法2: GitHubと連携（推奨）
 
 1. **GitHubリポジトリの準備**
+
    ```bash
    git add .
    git commit -m "Initial commit"
@@ -240,22 +241,22 @@ company-demo-site/
 ```json
 {
   "colors": {
-    "primary": "#1B4E9B",      // メインカラー
-    "primary-dark": "#164080",  // メインカラー（濃）
+    "primary": "#1B4E9B", // メインカラー
+    "primary-dark": "#164080", // メインカラー（濃）
     "primary-light": "#2563EB", // メインカラー（淡）
-    "secondary": "#00A0B0",    // サブカラー
-    "accent": "#F5A623",       // アクセントカラー
+    "secondary": "#00A0B0", // サブカラー
+    "accent": "#F5A623", // アクセントカラー
     "text": {
-      "primary": "#1F2937",    // 主要テキスト
-      "secondary": "#6B7280",  // 補助テキスト
-      "inverse": "#FFFFFF"     // 反転テキスト
+      "primary": "#1F2937", // 主要テキスト
+      "secondary": "#6B7280", // 補助テキスト
+      "inverse": "#FFFFFF" // 反転テキスト
     },
     "background": {
-      "primary": "#FFFFFF",    // 主要背景
-      "secondary": "#F9FAFB",  // 補助背景
-      "tertiary": "#F3F4F6"    // 第三背景
+      "primary": "#FFFFFF", // 主要背景
+      "secondary": "#F9FAFB", // 補助背景
+      "tertiary": "#F3F4F6" // 第三背景
     },
-    "border": "#E5E7EB"        // ボーダー色
+    "border": "#E5E7EB" // ボーダー色
   },
   "typography": {
     "fontFamily": {
@@ -272,38 +273,38 @@ company-demo-site/
 
 ```typescript
 export const siteConfig = {
-  name: "株式会社サンプル住宅",
-  nameEn: "Sample Housing Inc.",
-  description: "快適な住まいづくりをお手伝いする総合住宅メーカー",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
-  logo: "/images/logo.png",
-  ogImage: "/images/og-image.jpg",
+  name: '株式会社サンプル住宅',
+  nameEn: 'Sample Housing Inc.',
+  description: '快適な住まいづくりをお手伝いする総合住宅メーカー',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+  logo: '/images/logo.png',
+  ogImage: '/images/og-image.jpg',
   contact: {
-    tel: "0120-XXX-XXX",
-    telDisplay: "0120-XXX-XXX",
-    fax: "03-XXXX-XXXX",
-    email: "info@example.com",
+    tel: '0120-XXX-XXX',
+    telDisplay: '0120-XXX-XXX',
+    fax: '03-XXXX-XXXX',
+    email: 'info@example.com',
     hours: {
-      weekday: "9:00-18:00",
-      weekend: "10:00-17:00",
-      holiday: "定休日：水曜日"
-    }
+      weekday: '9:00-18:00',
+      weekend: '10:00-17:00',
+      holiday: '定休日：水曜日',
+    },
   },
   address: {
-    postal: "100-0001",
-    prefecture: "東京都",
-    city: "千代田区",
-    street: "千代田1-1-1",
-    building: "サンプルビル10F",
-    googleMapUrl: "https://maps.google.com/..."
+    postal: '100-0001',
+    prefecture: '東京都',
+    city: '千代田区',
+    street: '千代田1-1-1',
+    building: 'サンプルビル10F',
+    googleMapUrl: 'https://maps.google.com/...',
   },
   social: {
-    twitter: "https://twitter.com/example",
-    facebook: "https://facebook.com/example",
-    instagram: "https://instagram.com/example",
-    youtube: "https://youtube.com/example",
-    line: "https://line.me/example"
-  }
+    twitter: 'https://twitter.com/example',
+    facebook: 'https://facebook.com/example',
+    instagram: 'https://instagram.com/example',
+    youtube: 'https://youtube.com/example',
+    line: 'https://line.me/example',
+  },
 }
 ```
 
@@ -314,56 +315,56 @@ export const siteConfig = {
 ```typescript
 export const navigation = {
   main: [
-    { 
-      label: "ホーム", 
-      href: "/" 
+    {
+      label: 'ホーム',
+      href: '/',
     },
-    { 
-      label: "あさひの家づくり", 
-      href: "/house",
+    {
+      label: 'あさひの家づくり',
+      href: '/house',
       children: [
-        { label: "こだわり", href: "/house#features" },
-        { label: "施工の流れ", href: "/house#flow" },
-        { label: "よくある質問", href: "/house#faq" }
-      ]
+        { label: 'こだわり', href: '/house#features' },
+        { label: '施工の流れ', href: '/house#flow' },
+        { label: 'よくある質問', href: '/house#faq' },
+      ],
     },
-    { 
-      label: "施工事例", 
-      href: "/works" 
+    {
+      label: '施工事例',
+      href: '/works',
     },
-    { 
-      label: "品質・保証",
+    {
+      label: '品質・保証',
       children: [
-        { label: "品質検査", href: "/quality" },
-        { label: "保証制度", href: "/warranty" },
-        { label: "アフターメンテナンス", href: "/maintenance" }
-      ]
+        { label: '品質検査', href: '/quality' },
+        { label: '保証制度', href: '/warranty' },
+        { label: 'アフターメンテナンス', href: '/maintenance' },
+      ],
     },
-    { 
-      label: "会社情報", 
-      href: "/company",
+    {
+      label: '会社情報',
+      href: '/company',
       children: [
-        { label: "会社概要", href: "/company" },
-        { label: "SDGsへの取り組み", href: "/sdgs" },
-        { label: "CSR活動", href: "/csr" }
-      ]
+        { label: '会社概要', href: '/company' },
+        { label: 'SDGsへの取り組み', href: '/sdgs' },
+        { label: 'CSR活動', href: '/csr' },
+      ],
     },
-    { 
-      label: "お知らせ",
+    {
+      label: 'お知らせ',
       children: [
-        { label: "ニュース", href: "/news" },
-        { label: "トピックス", href: "/topics" }
-      ]
+        { label: 'ニュース', href: '/news' },
+        { label: 'トピックス', href: '/topics' },
+      ],
     },
-    { 
-      label: "お問い合わせ", 
-      href: "/contact",
-      highlight: true  // ボタンとして強調表示
-    }
+    {
+      label: 'お問い合わせ',
+      href: '/contact',
+      highlight: true, // ボタンとして強調表示
+    },
   ],
   footer: {
     // フッター用のナビゲーション設定
-  }
+  },
 }
 ```
 
@@ -403,21 +404,21 @@ pnpm optimize-images
 
 ```markdown
 ---
-title: "モダンな二世帯住宅"
-date: "2025-08-08"
-category: "二世帯住宅"
-tags: ["モダン", "省エネ", "バリアフリー"]
-thumbnail: "/images/works/work-001/main.jpg"
+title: 'モダンな二世帯住宅'
+date: '2025-08-08'
+category: '二世帯住宅'
+tags: ['モダン', '省エネ', 'バリアフリー']
+thumbnail: '/images/works/work-001/main.jpg'
 images:
-  - src: "/images/works/work-001/main.jpg"
-    alt: "外観"
-  - src: "/images/works/work-001/sub-1.jpg"
-    alt: "リビング"
+  - src: '/images/works/work-001/main.jpg'
+    alt: '外観'
+  - src: '/images/works/work-001/sub-1.jpg'
+    alt: 'リビング'
 specs:
-  structure: "木造在来工法"
-  area: "延床面積 165.5㎡"
-  completion: "2025年7月"
-  location: "東京都世田谷区"
+  structure: '木造在来工法'
+  area: '延床面積 165.5㎡'
+  completion: '2025年7月'
+  location: '東京都世田谷区'
 ---
 
 ## お客様のご要望
@@ -437,11 +438,11 @@ specs:
 
 ```markdown
 ---
-title: "夏の新築キャンペーン開催中"
-date: "2025-08-01"
-category: "キャンペーン"
-tags: ["キャンペーン", "新築"]
-excerpt: "8月31日までの期間限定で、新築をご検討の方に特別プランをご用意しました。"
+title: '夏の新築キャンペーン開催中'
+date: '2025-08-01'
+category: 'キャンペーン'
+tags: ['キャンペーン', '新築']
+excerpt: '8月31日までの期間限定で、新築をご検討の方に特別プランをご用意しました。'
 ---
 
 この夏、新築をご検討の皆様に朗報です。

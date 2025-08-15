@@ -1,9 +1,11 @@
 # SOW5: コンテンツ型ページ（一覧/詳細）
 
 ## 目的/範囲
+
 企業向けホームページテンプレートのコンテンツ型ページ（施工事例、ニュース、トピックス）の一覧・詳細ページを実装する。Markdownベースのコンテンツ管理システムを構築し、静的サイト生成時に動的ルーティングでページを生成する。
 
 ## 成果物
+
 - 施工事例一覧ページ（app/(site)/works/page.tsx）
 - 施工事例詳細ページ（app/(site)/works/[slug]/page.tsx）
 - ニュース一覧ページ（app/(site)/news/page.tsx）
@@ -18,6 +20,7 @@
 - Markdownコンテンツファイル（content/works/、content/news/、content/topics/）
 
 ## 依存関係
+
 - SOW1～4の完了
 - gray-matter（frontmatter解析）
 - remark/rehype（Markdown処理）
@@ -26,6 +29,7 @@
 - date-fns（日付処理）
 
 ## 変更対象（ファイル/配置）
+
 ```
 /
 ├── app/
@@ -77,6 +81,7 @@
 ## コンポーネント責務/Props契約
 
 ### ArticleCard
+
 - **責務**: ニュース・トピックス用カード表示
 - **Props**:
   - `title: string` - 記事タイトル
@@ -87,6 +92,7 @@
   - `image?: string` - サムネイル画像
 
 ### WorksCard
+
 - **責務**: 施工事例用カード表示
 - **Props**:
   - `title: string` - 物件名
@@ -97,6 +103,7 @@
   - `thumbnail: string` - サムネイル画像
 
 ### Pagination
+
 - **責務**: ページネーション表示・制御
 - **Props**:
   - `currentPage: number` - 現在のページ
@@ -105,6 +112,7 @@
   - `className?: string` - 追加スタイル
 
 ### FilterTabs
+
 - **責務**: カテゴリーフィルター表示
 - **Props**:
   - `categories: Category[]` - カテゴリー配列
@@ -112,6 +120,7 @@
   - `onSelect: (category: string) => void` - 選択コールバック
 
 ### MediaGallery
+
 - **責務**: ライトボックス機能付き画像ギャラリー
 - **Props**:
   - `images: GalleryImage[]` - 画像配列
@@ -119,6 +128,7 @@
   - `columns?: number` - カラム数
 
 ## UI挙動
+
 - 一覧ページは12件/ページでページネーション
 - カテゴリーフィルターは即座に絞り込み反映
 - カードホバー時にシャドウ強調とスケール微増
@@ -127,6 +137,7 @@
 - スクロール位置を記憶し、戻るボタンで復元
 
 ## A11y配慮
+
 - 記事リストはセマンティックな`<article>`要素使用
 - 画像には適切なalt属性設定
 - 日付は`<time>`要素でマークアップ
@@ -135,6 +146,7 @@
 - 読み上げ順序の最適化
 
 ## 受け入れ基準（DoD）
+
 1. Markdownファイルから一覧・詳細ページが生成される
 2. frontmatterのメタデータが正しく表示される
 3. カテゴリーフィルターが機能する
@@ -147,6 +159,7 @@
 10. 静的生成時に全ページが生成される
 
 ## 除外項目
+
 - コンテンツの検索機能
 - タグによる絞り込み
 - コメント機能
@@ -154,6 +167,7 @@
 - 印刷用スタイル
 
 ## Claude Code実装メモ
+
 1. lib/content.tsでMarkdownファイル読み込み、frontmatter解析、ソート処理実装
 2. content/配下に各カテゴリ5件以上のサンプルMarkdownファイル作成
 3. frontmatter: title、description、date、category、thumbnail、images配列等定義
