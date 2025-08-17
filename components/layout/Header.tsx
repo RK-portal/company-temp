@@ -90,7 +90,7 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
       </a>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-sm transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-500 ease-out ${
           headerVisible ? 'translate-y-0' : '-translate-y-full'
         } ${className}`}
       >
@@ -117,19 +117,31 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
                   key={item.id}
                   onMouseEnter={() => handleMenuEnter(item.id)}
                   onMouseLeave={handleMenuLeave}
-                  className="relative"
+                  className="relative group"
                 >
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${
+                    className={`relative text-sm font-medium transition-all duration-500 ease-out px-2 py-1 ${
                       pathname === item.href || pathname.startsWith(item.href + '/')
                         ? 'text-primary'
-                        : 'text-gray-700'
+                        : 'text-gray-700 hover:text-primary'
                     }`}
                     aria-expanded={activeMenuId === item.id ? 'true' : 'false'}
                     aria-haspopup={item.children ? 'true' : 'false'}
                   >
-                    {item.label}
+                    <span className="relative z-10">{item.label}</span>
+                    {/* ホバー時の背景アニメーション */}
+                    <span className={`absolute inset-0 bg-primary-50 rounded-md transform scale-x-0 transition-transform duration-500 ease-out origin-left ${
+                      pathname === item.href || pathname.startsWith(item.href + '/') || activeMenuId === item.id
+                        ? 'scale-x-100'
+                        : 'group-hover:scale-x-100'
+                    }`} />
+                    {/* 下線アニメーション */}
+                    <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-primary-500 transform transition-all duration-500 ease-out ${
+                      pathname === item.href || pathname.startsWith(item.href + '/')
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    }`} />
                   </Link>
                 </div>
               ))}
@@ -142,13 +154,21 @@ export default function Header({ className = '', sticky = true }: HeaderProps) {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className={`text-sm font-medium px-4 py-2 rounded-md transition-colors ${
+                    className={`relative text-sm font-medium px-4 py-2 rounded-md transition-all duration-500 ease-out overflow-hidden ${
                       item.id === 'contact'
-                        ? 'bg-primary text-white hover:bg-primary-dark'
-                        : 'text-gray-700 hover:text-primary'
+                        ? 'bg-primary text-white hover:bg-primary-600 hover:shadow-lg hover:scale-105'
+                        : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                     }`}
                   >
-                    {item.label}
+                    <span className="relative z-10">{item.label}</span>
+                    {item.id === 'contact' && (
+                      <>
+                        {/* 波紋エフェクト */}
+                        <span className="absolute inset-0 bg-white/20 transform translate-y-full transition-transform duration-700 ease-out hover:translate-y-0" />
+                        {/* 光沢エフェクト */}
+                        <span className="absolute -top-2 -right-2 w-4 h-4 bg-white/30 rounded-full blur-md animate-pulse" />
+                      </>
+                    )}
                   </Link>
                 ))}
               </div>

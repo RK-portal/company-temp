@@ -19,13 +19,13 @@ export default function MegaMenu({ items, isOpen, onClose }: MegaMenuProps) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-40 bg-black bg-opacity-25"
+        className="fixed inset-0 z-40 bg-black bg-opacity-25 transition-opacity duration-500 ease-out"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Mega Menu Content */}
-      <div className="absolute left-0 right-0 z-50 bg-white shadow-lg border-t border-gray-100 -mt-px">
+      <div className="absolute left-0 right-0 z-50 bg-white/98 backdrop-blur-sm shadow-2xl border-t border-gray-100 -mt-px transition-all duration-500 ease-out animate-slideDown">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-y-6 py-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
             {columns.map((column, columnIndex) => (
@@ -34,7 +34,7 @@ export default function MegaMenu({ items, isOpen, onClose }: MegaMenuProps) {
                   <div key={item.id} className="group">
                     <Link
                       href={item.href}
-                      className="block rounded-lg p-3 hover:bg-gray-50 transition-colors"
+                      className="block rounded-lg p-3 transition-all duration-500 ease-out hover:bg-primary-50/50 hover:shadow-md hover:scale-[1.02] hover:translate-x-1"
                       onClick={onClose}
                     >
                       <div className="flex items-start">
@@ -43,7 +43,7 @@ export default function MegaMenu({ items, isOpen, onClose }: MegaMenuProps) {
                         )}
                         <div className="ml-3 flex-1">
                           <div className="flex items-center">
-                            <h3 className="text-sm font-medium text-gray-900 group-hover:text-primary">
+                            <h3 className="text-sm font-medium text-gray-900 transition-all duration-500 ease-out group-hover:text-primary-600 group-hover:translate-x-1">
                               {item.label}
                             </h3>
                             {item.badge && (
@@ -58,10 +58,10 @@ export default function MegaMenu({ items, isOpen, onClose }: MegaMenuProps) {
                             )}
                           </div>
                           {item.description && (
-                            <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                            <p className="mt-1 text-sm text-gray-500 transition-all duration-500 ease-out group-hover:text-gray-700">{item.description}</p>
                           )}
                         </div>
-                        <ChevronRightIcon className="h-5 w-5 text-gray-400 group-hover:text-primary flex-shrink-0 ml-2" />
+                        <ChevronRightIcon className="h-5 w-5 text-gray-400 flex-shrink-0 ml-2 transition-all duration-500 ease-out group-hover:text-primary-600 group-hover:translate-x-2" />
                       </div>
                     </Link>
                   </div>
